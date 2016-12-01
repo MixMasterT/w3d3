@@ -1,0 +1,30 @@
+
+def get_user
+  puts "PLease enter your email"
+  email = gets.chomp
+
+  #check for email in database
+  user = User.find_by(email: email)
+  user = User.new(email: email) unless user
+end
+
+#ask for long_url
+def prompt_for_long_url
+  puts "Please enter a url to shorten"
+  url = gets.chomp
+end
+
+#get shortened_url
+def process_long_url(user)
+#   raise "User undefined" if user.nil?
+# rescue
+#   activate_user
+#   retry
+# end
+  url = prompt_for_long_url
+  ShortenedUrl.create_for_user_and_long_url(user, url)
+end
+
+user = get_user
+p process_long_url(user)
+#ask for email
